@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="icon" href="/favicon.ico" type="image/x-icon"/><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Project Euler Problem 1 Solution in C# | 70Three by Christopher Tobin - Sr. Software Developer specializing in .NET and JavaScript</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Project Euler Problem 1 Solution in C#" />
+<meta name="author" content="Christopher Tobin" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="On this page is the solution for Problem 1 of Project Euler. If you want just analysis about this problem, check it out here. Turn back now if you do not want the solution." />
+<meta property="og:description" content="On this page is the solution for Problem 1 of Project Euler. If you want just analysis about this problem, check it out here. Turn back now if you do not want the solution." />
+<link rel="canonical" href="https://www.thesevenzerothree.com/the-73rd-page/2020/02/07/project-euler-problem-1-solution/" />
+<meta property="og:url" content="https://www.thesevenzerothree.com/the-73rd-page/2020/02/07/project-euler-problem-1-solution/" />
+<meta property="og:site_name" content="70Three by Christopher Tobin - Sr. Software Developer specializing in .NET and JavaScript" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-02-07T00:00:00+00:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","headline":"Project Euler Problem 1 Solution in C#","dateModified":"2020-02-07T00:00:00+00:00","datePublished":"2020-02-07T00:00:00+00:00","author":{"@type":"Person","name":"Christopher Tobin"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.thesevenzerothree.com/the-73rd-page/2020/02/07/project-euler-problem-1-solution/"},"description":"On this page is the solution for Problem 1 of Project Euler. If you want just analysis about this problem, check it out here. Turn back now if you do not want the solution.","url":"https://www.thesevenzerothree.com/the-73rd-page/2020/02/07/project-euler-problem-1-solution/","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/styles/main.css" />
+    <link rel="stylesheet" href="/static/styles/thumbnails.css" />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122943169-1"></script>
+<script>
+  window['ga-disable-UA-122943169-1'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-122943169-1');
+</script>
+  </head>
+
+  <body>
+    <header class="p-1">
+      <div class="text-center">
+        <a class="d-block d-sm-none text-dark h3" href="/">Christopher Tobin</a>
+      </div>
+      <nav class="navbar navbar-expand">
+        <a class="navbar-brand text-dark d-none d-sm-block" href="/">Christopher Tobin</a>
+        <div class="collapse navbar-collapse border-left">
+            <ul class="navbar-nav">
+              
+                <li class="navbar-item">
+                  <a class="p-2 text-muted" href="/the-73rd-page/" title="The 73rd Page">
+                      The 73rd Page 
+                  </a>
+                </li>
+              
+                <li class="navbar-item">
+                  <a class="p-2 text-muted" href="/projects/" title="Projects">
+                      Projects 
+                  </a>
+                </li>
+              
+                <li class="navbar-item">
+                  <a class="p-2 text-muted" href="/about/" title="About">
+                      About 
+                  </a>
+                </li>
+              
+                <li class="navbar-item">
+                  <a class="p-2 text-muted" href="/contact/" title="Contact">
+                      Contact 
+                  </a>
+                </li>
+              
+            </ul>
+        </div>
+      </nav>
+    </header>
+    
+    <div class="container mw-100">
+    <main class="page-wrapper m-1 mt-4 p-3 m-sm-4 m-md-4 m-lg-4 m-xl-4">
+        <article>
+            <div class="row">
+                <div class="col text-center">
+                    <header>
+                        <h1>Project Euler Problem 1 Solution in C#</h1>
+                        <img src="https://s.gravatar.com/avatar/d531eea053a5963f5463037fc7732a2e" class="rounded-circle" alt="Christopher Tobin" />
+                        <h5>Christopher Tobin</h5>
+                        <p class="small">February 07, 2020 </p>
+                    </header>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    <p>On this page is the solution for <a href="https://projecteuler.net/problem=1">Problem 1</a> of <a href="https://projecteuler.net/">Project Euler</a>. If you want just analysis about this problem, check it out <a href="/the-73rd-page/2019/11/01/project-euler-problem-1-analysis/">here</a>. Turn back now if you do not want the solution.</p>
+
+<p>If you want a refresher about what is being asked:</p>
+
+<h2 id="multiples-of-3-and-5">Multiples of 3 and 5</h2>
+
+<blockquote>
+  <p>If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.</p>
+
+  <p>Find the sum of all the multiples of 3 or 5 below 1000.</p>
+</blockquote>
+
+<h3 id="test-driven-development">Test Driven Development</h3>
+
+<p>The minds behind Project Euler have been so thoughtful as to grace us with an example. This allows us to begin our journey by writing a unit test to account for the case described in the example. The test will pass 10 as the input parameter to some function and will expect a value of 23 to be returned.</p>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">TestMethod</span><span class="p">]</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">Problem1_Example</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Arrange</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">input</span> <span class="p">=</span> <span class="m">10</span><span class="p">;</span>
+
+    <span class="c1">// Act</span>
+    <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">Problem1</span><span class="p">.</span><span class="nf">Solve</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+
+    <span class="c1">// Assert</span>
+    <span class="n">Assert</span><span class="p">.</span><span class="nf">AreEqual</span><span class="p">(</span><span class="m">23</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now that we have our test written for the example case, we’ll need to write some code to make the test pass. First we’ll need a class and a method. I’ll be making both the class and the method static because we won’t have a need to ever create an instance of this class.</p>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">Program1</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="nf">Solve</span><span class="p">(</span><span class="kt">int</span> <span class="n">input</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// TODO: implementation here...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>We could of course cheat and do something real cheesy. After all, the whole point of test driven development is to write the simplest solution to satisfy the test right?</p>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="nf">Solve</span><span class="p">(</span><span class="kt">int</span> <span class="n">input</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="m">23</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>When we run the test it passes! That’s good right? Of course not. This is complete crap. If we pass a value of 1000 into this method it will still return a value of 23, which is most definitely not correct. We can add an additional test to verify that when the method input is 1000, we don’t receive the value of 23 back.</p>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">TestMethod</span><span class="p">]</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">Problem1_Answer</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Arrange</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">input</span> <span class="p">=</span> <span class="m">1000</span><span class="p">;</span>
+
+    <span class="c1">// Act</span>
+    <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">Problem1</span><span class="p">.</span><span class="nf">Solve</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+
+    <span class="c1">// Assert</span>
+    <span class="n">Assert</span><span class="p">.</span><span class="nf">AreNotEqual</span><span class="p">(</span><span class="m">23</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This test fails like we expect it to. We don’t know the actual value to expect back yet so we can’t assert anything else at this point. These tests will provide a good foundation for moving forward with solving the problem.</p>
+
+<h2 id="solving-the-problem">Solving the Problem</h2>
+
+<p>A simple implementation for the solution to this problem is to use a loop to iterate over all of the numbers between 1 and whatever the value of the <code class="highlighter-rouge">input</code> variable is. The most common choices for loops are a <code class="highlighter-rouge">for</code> loop and a <code class="highlighter-rouge">while</code> loop. Either would work in this scenario but a <code class="highlighter-rouge">for</code> loop is the best choice here because there is a defined number of iterations. When we know that the loop will iterate for a defined amount of times, a <code class="highlighter-rouge">for</code> loop is the obvious choice. We’ll go through the loop up to the number specified in the <code class="highlighter-rouge">input</code> variable.</p>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="nf">Solve</span><span class="p">(</span><span class="kt">int</span> <span class="n">input</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">var</span> <span class="n">number</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span> <span class="n">number</span> <span class="p">&lt;</span> <span class="n">input</span><span class="p">;</span> <span class="n">number</span><span class="p">++)</span>
+    <span class="p">{</span>
+        <span class="c1">// implementation...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now that we have the loop, we need to fill it with stuff. We’ll first check if the number is divisible by 3. We’ll also need to keep track of all of the numbers that are divisible by either 3 or 5 so that we can add them up once we get to the end.</p>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="nf">Solve</span><span class="p">(</span><span class="kt">int</span> <span class="n">input</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">numbersDivisibleBy3or5</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">var</span> <span class="n">number</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span> <span class="n">number</span> <span class="p">&lt;</span> <span class="n">input</span><span class="p">;</span> <span class="n">number</span><span class="p">++)</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">isNumberDivisibleBy3or5</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">number</span> <span class="p">%</span> <span class="m">3</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// This number is divisible by 3!</span>
+            <span class="n">isNumberDivisibleBy3or5</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="c1">// This number is not divisible by 3!</span>
+            <span class="n">isNumberDivisibleBy3or5</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">isNumberDivisibleBy3or5</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">numbersDivisibleBy3or5</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">number</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>There are a few things going on here:</p>
+
+<ul>
+  <li>A list of <code class="highlighter-rouge">int</code> has been added so that we can keep track of the numbers divisible by either 3 or 5</li>
+  <li>We execute an <code class="highlighter-rouge">if</code> statement to check if the number is divisible by 3
+    <ul>
+      <li>We do this by using the <code class="highlighter-rouge">mod</code> operator (<code class="highlighter-rouge">%</code>)</li>
+      <li>The <code class="highlighter-rouge">mod</code> operator will output the remainder. When this expression outputs <code class="highlighter-rouge">0</code>, we know that the number is divisible by 3.</li>
+      <li>More info about this operator can be found on the <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/arithmetic-operators#remainder-operator-">Microsoft Documentation site</a>.</li>
+    </ul>
+  </li>
+  <li>Whenever a number is divisible by 3, a local boolean variable <code class="highlighter-rouge">isNumberDivisibleBy3or5</code> is set to true</li>
+  <li>When a number is not divisible by 3, we set <code class="highlighter-rouge">isNumberDivisibleBy3or5</code> to false</li>
+</ul>
+
+<p>That seems like a good start right? Now that we have all of the numbers that are divisible by 3, we can proceed to determining the numbers divisible by 5.</p>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="nf">Solve</span><span class="p">(</span><span class="kt">int</span> <span class="n">input</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">numbersDivisibleBy3or5</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">var</span> <span class="n">number</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span> <span class="n">number</span> <span class="p">&lt;</span> <span class="n">input</span><span class="p">;</span> <span class="n">number</span><span class="p">++)</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">isNumberDivisibleBy3or5</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">number</span> <span class="p">%</span> <span class="m">3</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// This number is divisible by 3!</span>
+            <span class="n">isNumberDivisibleBy3or5</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="c1">// This number is not divisible by 3!</span>
+            <span class="n">isNumberDivisibleBy3or5</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">number</span> <span class="p">%</span> <span class="m">5</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// This number is divisible by 5!</span>
+            <span class="n">isNumberDivisibleBy3or5</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="c1">// This number is not divisible by 5!</span>
+            <span class="n">isNumberDivisibleBy3or5</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">isNumberDivisibleBy3or5</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">numbersDivisibleBy3or5</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">number</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Easy peasy! We should now have all of the numbers divisible by either 3 or 5 in a list. All we need to do is add them all up and return the result. But how can we add all of the numbers in the list? One way would be to loop through this list and add each number to the previous one like so:</p>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">var</span> <span class="n">total</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">divisibleNumber</span> <span class="k">in</span> <span class="n">numbersDivisibleBy3or5</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">total</span> <span class="p">+=</span> <span class="n">divisibleNumber</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">return</span> <span class="n">total</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="bugs-everywhere">Bugs Everywhere</h3>
+
+<p>This should work right? If we run the test covering the example we actually see something unexpected - a failed test. Instead of the expected value of 23, we’re getting a value of 5. How on Earth is that happening??</p>
+
+<p>There’s actually a bug in the code. Any time a number is not divisible by either 3 or 5, the <code class="highlighter-rouge">isNumberDivisibleBy3or5</code> variable is being set to false. That’s correct behavior right? Well, not necessarily.</p>
+
+<p>When a number is divisible by 3, <code class="highlighter-rouge">isNumberDivisibleBy3or5</code> is set to <code class="highlighter-rouge">true</code>, which is what we expect. However, when we check if this same number is also divisible by 5, we are running into some problems when the number is not divisible by 5. Whenever a number is not divisible by 5, <code class="highlighter-rouge">isNumberDivisibleBy3or5</code> is being set to <code class="highlighter-rouge">false</code>. Even if that number was already divisible by 3!</p>
+
+<p>This is pretty simple to fix. All we need to do is remove the <code class="highlighter-rouge">else</code> condition when evaluating if a number is divisible by 3 or 5.</p>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kt">var</span> <span class="n">number</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span> <span class="n">number</span> <span class="p">&lt;</span> <span class="n">input</span><span class="p">;</span> <span class="n">number</span><span class="p">++)</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">isNumberDivisibleBy3or5</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">number</span> <span class="p">%</span> <span class="m">3</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// This number is divisible by 3!</span>
+        <span class="n">isNumberDivisibleBy3or5</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">number</span> <span class="p">%</span> <span class="m">5</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// This number is divisible by 5!</span>
+        <span class="n">isNumberDivisibleBy3or5</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">isNumberDivisibleBy3or5</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">numbersDivisibleBy3or5</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">number</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This fixes the bug and now the test for the example case passes!</p>
+
+<h2 id="make-it-better">Make it Better</h2>
+
+<p>Now that we’ve made a working solution, we can attempt to make it better. There are a few optimizations that can be made. The great thing about doing this is that we already have passing unit tests. After we make changes we can re-run the test to ensure we haven’t broken anything.</p>
+
+<h3 id="unnecessary-looping">Unnecessary Looping</h3>
+
+<p>We’re currently doing some unnecessary looping at the end of the method to return the sum of all of the numbers divisible by 3 or 5. We can optimize this by keeping a running total of the sum of all numbers divisible by 3 or 5 as we go instead of storing them in a temporary list.</p>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="nf">Solve</span><span class="p">(</span><span class="kt">int</span> <span class="n">input</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">sum</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">var</span> <span class="n">number</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span> <span class="n">number</span> <span class="p">&lt;</span> <span class="n">input</span><span class="p">;</span> <span class="n">number</span><span class="p">++)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">number</span> <span class="p">%</span> <span class="m">3</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// This number is divisible by 3!</span>
+            <span class="n">sum</span> <span class="p">+=</span> <span class="n">number</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">number</span> <span class="p">%</span> <span class="m">5</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// This number is divisible by 5!</span>
+            <span class="n">sum</span> <span class="p">+=</span> <span class="n">number</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="multiple-if-statements">Multiple <code class="highlighter-rouge">if</code> Statements</h3>
+
+<p>We have 2 separate <code class="highlighter-rouge">if</code> statements at the moment:  one to see if the number is divisible by 3 and a different one to see if the number is divisible by 5. We can combine these into one <code class="highlighter-rouge">if</code> statement with the OR (<code class="highlighter-rouge">||</code>) operator to make it a bit cleaner.</p>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="nf">Solve</span><span class="p">(</span><span class="kt">int</span> <span class="n">input</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">sum</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">var</span> <span class="n">number</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span> <span class="n">number</span> <span class="p">&lt;</span> <span class="n">input</span><span class="p">;</span> <span class="n">number</span><span class="p">++)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">number</span> <span class="p">%</span> <span class="m">3</span> <span class="p">==</span> <span class="m">0</span> <span class="p">||</span> <span class="n">number</span> <span class="p">%</span> <span class="m">5</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// This number is divisible by 3 or by 5!</span>
+            <span class="n">sum</span> <span class="p">+=</span> <span class="n">number</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+                </div>
+            </div>
+        </article>
+    </main>
+</div>
+
+    
+    <footer class="border-top text-center p-4">
+    <div class="row">
+        <div class="col-12 col-md">
+            <img class="mb-2" src="/static/images/70Three-logo.png" alt="" width="80" />
+            <small class="d-block mb-3 text-muted">© 2017-2020</small>
+        </div>
+        <div class="col-6 col-md">
+            <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="/posting-schedule/">Posting Schedule</a></li>
+                <li><a class="text-muted" href="https://github.com/SevenZeroThree/www.thesevenzerothree.com/issues/new/">Report a Bug</a></li>
+                <li><a class="text-muted" href="/archive/">Archive</a></li>
+            </ul>
+        </div>
+        <div class="col-6 col-md">
+            <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="/about/">About</a></li>
+                <li><a class="text-muted" href="/contact/">Contact</a></li>
+                <li><a class="text-muted" href="/privacy-policy/">Privacy Policy</a></li>
+                <li><a class="text-muted" href="/sitemap/">Sitemap</a></li>
+            </ul>
+        </div>
+        <div class="col-6 col-md">
+            <img src="/static/images/mcp.png" alt="Microsoft Certified Professional - Christopher Tobin" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a href="https://github.com/SevenZeroThree/">
+                        <img src="/static/images/social-logos/github_small.png" width="24" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+  </body>
+</html>
